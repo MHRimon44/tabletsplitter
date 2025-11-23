@@ -1,24 +1,24 @@
 /* eslint-disable react-native/no-inline-styles */
-import 'react-native-gesture-handler'; // must be FIRST
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { View, Text } from 'react-native';
+import 'react-native-gesture-handler';
 import React from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet } from 'react-native';
+import Canvas from './src/screens/Canvas';
+import { TabletsProvider } from './src/context/TabletsContext';
 
-const App = () => {
+export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: '#fff',
-        }}
-      >
-        <Text>App</Text>
-      </View>
+      <TabletsProvider>
+        <SafeAreaView style={styles.flex}>
+          <Canvas />
+        </SafeAreaView>
+      </TabletsProvider>
     </GestureHandlerRootView>
   );
-};
+}
 
-export default App;
+const styles = StyleSheet.create({
+  flex: { flex: 1 },
+});
