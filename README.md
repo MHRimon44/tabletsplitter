@@ -1,97 +1,135 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Tablet Splitter App
 
-# Getting Started
+A React Native app that allows users to create, move, and split tablets (rectangles) interactively on the screen. This project demonstrates gesture handling, dynamic UI updates, and state management with Context API using React Native CLI and TypeScript.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## **Features**
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+1. **Draw Tablets**
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+   - Press and drag on empty canvas space to create a tablet.
+   - Minimum tablet size: **40 dpi × 20 dpi**.
+   - Tablets are assigned **random colors** automatically.
 
-```sh
-# Using npm
+2. **Split Tablets**
+
+   - Single tap on any part of the screen splits intersecting tablets.
+   - Minimum part size: **20 dpi × 10 dpi**.
+   - Parts retain **original tablet color and corner radius**.
+
+3. **Move Tablets**
+
+   - Each tablet or part can be **dragged anywhere** on the canvas.
+
+4. **Nudge Unsplittable Parts**
+
+   - If a tablet part is too small to split, it will **move slightly along the split line**.
+
+5. **Dynamic UI**
+
+   - Tap shows splitting lines temporarily.
+   - Rubberband rectangle shows while drawing a new tablet.
+   - Hints and warnings displayed when minimum size is not met.
+
+---
+
+## **Tech Stack**
+
+- **React Native CLI** (TypeScript)
+- **react-native-gesture-handler** – Pan & Tap gestures
+- **react-native-reanimated** – Smooth animations for dragging
+- **Context API** – State management for tablets
+
+---
+
+## **Installation & Running**
+
+1. Clone the repo:
+
+```bash
+git clone <https://github.com/MHRimon44/tabletsplitter.git>
+cd TabletSplitter
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start Metro Bundler:
+
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
+4. Run on Android device/emulator:
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+```bash
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+---
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## **APK**
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+The release APK is located at:
+`android/app/build/outputs/apk/release/app-release.apk`
 
-```sh
-bundle install
+Install it on any Android device to test the app.
+
+### **Build APK from source**
+
+1. Go to the Android folder:
+
+```bash
+cd android
 ```
 
-Then, and every time you update your native dependencies, run:
+2. Run Gradle assembleRelease:
 
-```sh
-bundle exec pod install
+```bash
+./gradlew assembleRelease
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+3. The generated APK will be in:
+   `android/app/build/outputs/apk/release/app-release.apk`
 
-```sh
-# Using npm
-npm run ios
+---
 
-# OR using Yarn
-yarn ios
-```
+## **Usage Instructions**
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+1. **Create a Tablet**
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+   - Press & drag on empty space.
+   - Release to create a tablet.
 
-## Step 3: Modify your app
+2. **Split a Tablet**
 
-Now that you have successfully run the app, let's make changes!
+   - Tap anywhere on the canvas.
+   - Tablets intersecting the tap position will split along horizontal and/or vertical lines.
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+3. **Move a Tablet**
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+   - Press & drag any tablet or part.
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+4. **Unsplittable Tablet Part**
 
-## Congratulations! :tada:
+   - Small tablets that cannot split will **nudge slightly** along the split line.
 
-You've successfully run and modified your React Native App. :partying_face:
+---
 
-### Now what?
+## **Notes**
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+- Minimum size rules ensure tablets are always usable and visible.
+- Tablets retain color and corner radius after multiple splits.
+- All gestures are handled with **react-native-gesture-handler** and smooth animation is powered by **react-native-reanimated**.
 
-# Troubleshooting
+---
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## **Author**
 
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Md Mehedi Hasan
+Email: [mehedihasanrimon01@gmail.com](mailto:mehedihasanrimon01@gmail.com)
+Phone: +8801792085854
