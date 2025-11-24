@@ -20,7 +20,6 @@ export default function TabletView({ rect }: { rect: Rect }) {
   const translateX = useSharedValue(rect.x);
   const translateY = useSharedValue(rect.y);
 
-  // ✅ animated only position — NOT color
   const animatedStyle = useAnimatedStyle(() => ({
     position: 'absolute',
     transform: [
@@ -32,13 +31,11 @@ export default function TabletView({ rect }: { rect: Rect }) {
   const onGestureEvent = (event: PanGestureHandlerGestureEvent) => {
     const { translationX, translationY, state } = event.nativeEvent;
 
-    // ACTIVE = 2
     if (state === 2) {
       translateX.value = rect.x + translationX;
       translateY.value = rect.y + translationY;
     }
 
-    // END = 5
     if (state === 5) {
       const finalX = rect.x + translationX;
       const finalY = rect.y + translationY;
@@ -46,7 +43,6 @@ export default function TabletView({ rect }: { rect: Rect }) {
       translateX.value = withTiming(finalX, { duration: 120 });
       translateY.value = withTiming(finalY, { duration: 120 });
 
-      // ✅ update context safely
       runOnJS(updateTablet)(rect.id, { x: finalX, y: finalY });
     }
   };
@@ -60,7 +56,7 @@ export default function TabletView({ rect }: { rect: Rect }) {
             width: rect.width,
             height: rect.height,
             borderRadius: rect.radius,
-            backgroundColor: rect.color, // ✅ static, NOT animated
+            backgroundColor: rect.color,
           },
         ]}
       />
